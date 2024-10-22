@@ -1,0 +1,464 @@
+[
+    {
+      "leadId": "L100001",
+      "name": "John Doe",
+      "stage": {
+        "name": "Qualified",
+        "color": "#4CAF50"
+      },
+      "assignees": [
+        {
+          "id": "A001",
+          "name": "Alice Smith",
+          "profilePic": "https://example.com/alice.jpg",
+          "lastUpdated": "2024-06-15T10:30:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "john.doe@example.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5551234567"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Acme Corp",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "123 Main St, Anytown, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "john.d@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 2000,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Private",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "leadId": "L100002",
+      "name": "Jane Doe",
+      "stage": {
+        "name": "In Progress",
+        "color": "#FF9800"
+      },
+      "assignees": [
+        {
+          "id": "A002",
+          "name": "Bob Johnson",
+          "profilePic": "https://example.com/bob.jpg",
+          "lastUpdated": "2024-06-20T08:20:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "jane.doe@example.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5559876543"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Globex Corp",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "456 Elm St, Somewhere, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "jane.d@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 2010,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Public",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "leadId": "L100003",
+      "name": "Michael Scott",
+      "stage": {
+        "name": "Closed Won",
+        "color": "#00BCD4"
+      },
+      "assignees": [
+        {
+          "id": "A003",
+          "name": "Charlie Brown",
+          "profilePic": "https://example.com/charlie.jpg",
+          "lastUpdated": "2024-07-05T12:45:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "michael.scott@dundermifflin.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5553210987"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Dunder Mifflin",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "1725 Slough Ave, Scranton, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "michael.scott@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 1985,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Private",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "leadId": "L100004",
+      "name": "David Wallace",
+      "stage": {
+        "name": "Proposal Sent",
+        "color": "#2196F3"
+      },
+      "assignees": [
+        {
+          "id": "A004",
+          "name": "Olivia Williams",
+          "profilePic": "https://example.com/olivia.jpg",
+          "lastUpdated": "2024-08-10T11:00:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "david.wallace@dundermifflin.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5558765432"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Dunder Mifflin",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "1735 Slough Ave, Scranton, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "david.wallace@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 1980,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Private",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "leadId": "L100005",
+      "name": "Pam Beesly",
+      "stage": {
+        "name": "Negotiation",
+        "color": "#FFEB3B"
+      },
+      "assignees": [
+        {
+          "id": "A005",
+          "name": "Emma Thompson",
+          "profilePic": "https://example.com/emma.jpg",
+          "lastUpdated": "2024-09-12T14:30:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "pam.beesly@dundermifflin.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5556543210"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Dunder Mifflin",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "1727 Slough Ave, Scranton, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "pam.b@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 1985,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Private",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "leadId": "L100006",
+      "name": "Jim Halpert",
+      "stage": {
+        "name": "Prospecting",
+        "color": "#E91E63"
+      },
+      "assignees": [
+        {
+          "id": "A006",
+          "name": "Jake Parker",
+          "profilePic": "https://example.com/jake.jpg",
+          "lastUpdated": "2024-09-18T09:15:00Z"
+        }
+      ],
+      "overviewFields": [
+        {
+          "fieldId": "OF001",
+          "name": "Email",
+          "value": "jim.halpert@dundermifflin.com",
+          "fieldType": "EMAIL"
+        },
+        {
+          "fieldId": "OF002",
+          "name": "Phone",
+          "value": {
+            "countryCode": "+1",
+            "phoneNumber": "5554321098"
+          },
+          "fieldType": "PHONE_NUMBER"
+        },
+        {
+          "fieldId": "OF003",
+          "name": "Company",
+          "value": "Dunder Mifflin",
+          "fieldType": "SMALL_TEXT"
+        }
+      ],
+      "gofs": [
+        {
+          "id": "GOF001",
+          "name": "Contact Information",
+          "fields": [
+            {
+              "fieldId": "F001",
+              "name": "Address",
+              "value": "1729 Slough Ave, Scranton, USA",
+              "fieldType": "LONG_TEXT"
+            },
+            {
+              "fieldId": "F002",
+              "name": "Secondary Email",
+              "value": "jim.h@personal.com",
+              "fieldType": "EMAIL"
+            }
+          ]
+        },
+        {
+          "id": "GOF002",
+          "name": "Company Details",
+          "fields": [
+            {
+              "fieldId": "F003",
+              "name": "Founded Year",
+              "value": 1985,
+              "fieldType": "NUMBER"
+            },
+            {
+              "fieldId": "F004",
+              "name": "Public/Private",
+              "value": "Private",
+              "fieldType": "DROPDOWN"
+            }
+          ]
+        }
+      ]
+    }
+]

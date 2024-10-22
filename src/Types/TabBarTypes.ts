@@ -1,0 +1,1 @@
+export type IsActiveType={isActive:boolean}

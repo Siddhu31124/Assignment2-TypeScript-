@@ -1,0 +1,1 @@
+export type FieldTypes={type:string,value:any,textAlignment:string}

@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+  font-family:inter;
+  font-weight: 600;
+}
+.toggle-switch {
+  position: relative;
+  width: 36px;
+  height: 22px;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ededed;
+  transition: background-color 0.2s;
+  border-radius: 30px;
+}
+
+.toggle-label::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: transform 0.2s;
+  border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: rgb(0, 106, 255);
+}
+
+.toggle-input:checked + .toggle-label::before {
+  transform: translateX(14px);
+}
+hr {
+  border: none;
+  height: 2px;
+  color:#D0D5DD; 
+  background-color:#D0D5DD;
+}
+::-webkit-scrollbar {
+  display: none; 
+}
+.item{
+  width:calc(100%/3);
+}
+.item:nth-child(3n) {
+  border-right: none;
+}
+.leadContainer{
+  transition:all 0.3s ease;
+}
+.leadContainer:hover{
+  transform: translateY(-1rem);
+  background-color: rgb(238, 238, 238);
+}
+.dropAnimation{
+  animation: drop 1.0s ease;
+}
+@keyframes drop {
+  from{
+    max-height:55px;
+  }
+  to{
+    max-height:100%;
+  }
+  
+}
