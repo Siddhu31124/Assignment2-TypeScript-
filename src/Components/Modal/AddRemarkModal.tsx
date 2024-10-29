@@ -35,7 +35,6 @@ const ModalContent = observer(() => {
         assignessName: LeadsStore.selectedLeadDetails?.assignees,
       };
       setIsTextareaEmpty(false);
-      console.log(remarkData);
       RemarkStore.setRemarks(remarkData);
       ModalStore.handelCloseAddModal();
     } else {

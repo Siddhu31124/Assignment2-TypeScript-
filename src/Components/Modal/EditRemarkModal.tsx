@@ -15,7 +15,7 @@ import RemarkStore from "../../Store/RemarkStore";
 const RemarkModal = observer(({ remark }: { remark: textArea }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { leadId } = useParams();
-
+  console.log(remark.id, remark.content);
   function editReview() {
     const validTextArea =
       textAreaRef.current?.value !== undefined &&
@@ -25,7 +25,7 @@ const RemarkModal = observer(({ remark }: { remark: textArea }) => {
       let remake = textAreaRef.current?.value;
       let remarkData = {
         leadId: leadId,
-        id: v4(),
+        id: remark.id,
         content: remake,
         created: dayjs(new Date()).format("MM/DD/YY:hh:mm a"),
         assignessName: LeadsStore.selectedLeadDetails?.assignees,
