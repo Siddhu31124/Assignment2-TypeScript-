@@ -1,6 +1,5 @@
 import { createPortal } from "react-dom";
 import { useRef } from "react";
-import { v4 } from "uuid";
 import dayjs from "dayjs";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -9,13 +8,13 @@ import Modal from "react-modal";
 import ModalStore from "../../Store/ModalStore";
 import { customStyles } from "./ModalStyle";
 import LeadsStore from "../../Store/LeadStore";
-import { textArea } from "../../Types/CommonTypes";
-import RemarkStore from "../../Store/RemarkStore";
+import { Remark } from "../../Types/CommonTypes";
 
-const RemarkModal = observer(({ remark }: { remark: textArea }) => {
+const RemarkModal = observer(({ remark }: { remark: Remark }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { leadId } = useParams();
-  console.log(remark.id, remark.content);
+  const remarkMethods = LeadsStore.remark;
+
   function editReview() {
     const validTextArea =
       textAreaRef.current?.value !== undefined &&
@@ -24,13 +23,12 @@ const RemarkModal = observer(({ remark }: { remark: textArea }) => {
     if (validTextArea) {
       let remake = textAreaRef.current?.value;
       let remarkData = {
-        leadId: leadId,
         id: remark.id,
         content: remake,
         created: dayjs(new Date()).format("MM/DD/YY:hh:mm a"),
-        assignessName: LeadsStore.selectedLeadDetails?.assignees,
+        assignee: LeadsStore.selectedLeadDetails?.assignees,
       };
-      RemarkStore.editRemark(remarkData);
+      remarkMethods?.editRemark(remarkData);
       ModalStore.handelCloseEditModal();
     }
   }
@@ -66,7 +64,7 @@ const RemarkModal = observer(({ remark }: { remark: textArea }) => {
   );
 });
 
-const RemarkModalComponent = ({ remark }: { remark: textArea }) =>
+const RemarkModalComponent = ({ remark }: { remark: Remark }) =>
   createPortal(
     <RemarkModal remark={remark} />,
     document.getElementById("modal")!

@@ -43,12 +43,12 @@ export interface LeadDataType {
   assignees: AssigneesData[];
   overviewFields: FieldData[];
   gofs: GofObjData[];
+  remark: Remark[];
 }
 
-export interface textArea {
-  leadId: string;
+export interface Remark {
   id: string;
-  assignessName: AssigneesModel[] | undefined;
+  assignee: AssigneesModel[];
   content: string;
   created: string;
 }

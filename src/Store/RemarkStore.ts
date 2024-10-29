@@ -1,32 +1,27 @@
 import { makeAutoObservable } from "mobx";
-import { textArea } from "../Types/CommonTypes";
-import RemarkEditModel from "../Model/RemarkEditModel";
+import { Remark } from "../Types/CommonTypes";
+import RemarkModel from "../Model/RemarkModel";
 
-class _RemarkStore {
-  allRemarks: RemarkEditModel[];
-  specificRemark: RemarkEditModel[];
-  constructor() {
-    this.allRemarks = [];
-    this.specificRemark = [];
+class RemarkStore {
+  leadRemark: RemarkModel[];
+  constructor(leadRemarkData: RemarkModel[]) {
+    this.leadRemark = leadRemarkData;
     makeAutoObservable(this, {}, { autoBind: true });
   }
-  setRemarks(remark: textArea) {
-    const remarkData = new RemarkEditModel(remark);
-    this.allRemarks.push(remarkData);
+
+  setRemarks(remark: Remark) {
+    const remarkData = new RemarkModel(remark);
+    this.leadRemark.push(remarkData);
   }
-  setLeadRemark(LeadId: string) {
-    this.specificRemark = this.allRemarks.filter(
-      (each) => each.leadId === LeadId
-    );
-  }
+
   deleteRemark(id: string) {
-    this.allRemarks = this.allRemarks.filter(
+    this.leadRemark = this.leadRemark.filter(
       (eachRemark) => eachRemark.id !== id
     );
   }
 
-  editRemark(editRemark: textArea) {
-    let editData = this.allRemarks.find(
+  editRemark(editRemark: Remark) {
+    let editData = this.leadRemark.find(
       (eachRemark) => (eachRemark.id = editRemark.id)
     );
     if (editData !== undefined) {
@@ -34,7 +29,5 @@ class _RemarkStore {
     }
   }
 }
-
-const RemarkStore = new _RemarkStore();
 
 export default RemarkStore;

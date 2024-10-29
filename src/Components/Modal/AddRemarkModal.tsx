@@ -12,13 +12,13 @@ import { customStyles } from "./ModalStyle";
 import LeadsStore from "../../Store/LeadStore";
 import { SubmitButtonStyle, CloseButtonStyle } from "./ModalStyle";
 import { DATE_TIME_FORMAT } from "../../Constants";
-import RemarkStore from "../../Store/RemarkStore";
-import { textArea } from "../../Types/CommonTypes";
+import { Remark } from "../../Types/CommonTypes";
 
 const ModalContent = observer(() => {
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { leadId } = useParams();
+  const remarkMethod = LeadsStore.remark;
 
   function addReview() {
     const validTextArea =
@@ -27,15 +27,14 @@ const ModalContent = observer(() => {
       leadId;
     if (validTextArea) {
       let remake = textAreaRef.current?.value;
-      let remarkData: textArea = {
-        leadId: leadId,
+      let remarkData: Remark = {
         id: v4(),
         content: remake,
         created: dayjs(new Date()).format(DATE_TIME_FORMAT),
-        assignessName: LeadsStore.selectedLeadDetails?.assignees,
+        assignee: LeadsStore.selectedLeadDetails?.assignees,
       };
       setIsTextareaEmpty(false);
-      RemarkStore.setRemarks(remarkData);
+      remarkMethod?.setRemarks(remarkData);
       ModalStore.handelCloseAddModal();
     } else {
       setIsTextareaEmpty(true);

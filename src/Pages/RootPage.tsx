@@ -6,13 +6,11 @@ import Header from "../Components/Header/Header";
 import SideBar from "../Components/SideBarSection/Sidebar";
 import TabBar from "../Components/TabBar/TabBar";
 import LeadsStore from "../Store/LeadStore";
-import RemarkStore from "../Store/RemarkStore";
 
 const RootPage = observer(() => {
   const { leadId } = useParams<string>();
   if (leadId) {
     LeadsStore.setAllDetails(leadId);
-    RemarkStore.setLeadRemark(leadId);
   }
   return (
     <div className="flex flex-col">

@@ -4,6 +4,7 @@ import AssigneesModel from "./Assignees";
 import GofModel from "./GofModel";
 import FieldModel from "./FieldsModel";
 import StageModel from "./StageModel";
+import RemarkStore from "../Store/RemarkStore";
 
 class LeadModel {
   leadId: string;
@@ -12,6 +13,7 @@ class LeadModel {
   assignees: AssigneesModel[];
   overviewFields: FieldModel[];
   gofs: GofModel[];
+  remark: RemarkStore;
 
   constructor(LeadData: LeadDataType) {
     this.leadId = LeadData.leadId;
@@ -24,6 +26,7 @@ class LeadModel {
       (eachOverview) => new FieldModel(eachOverview)
     );
     this.gofs = LeadData.gofs.map((eachGof) => new GofModel(eachGof));
+    this.remark = new RemarkStore([]);
     makeAutoObservable(this, {}, { autoBind: true });
   }
 

@@ -6,23 +6,25 @@ import { RemarkLiStyle } from "./RemarkStyle";
 import RemarkModalComponent from "../Modal/EditRemarkModal";
 import ModalStore from "../../Store/ModalStore";
 import { RemarkListHeaderStyle } from "./RemarkStyle";
-import RemarkStore from "../../Store/RemarkStore";
-import RemarkEditModel from "../../Model/RemarkEditModel";
+import RemarkEditModel from "../../Model/RemarkModel";
+import LeadsStore from "../../Store/LeadStore";
+import { Remark } from "../../Types/CommonTypes";
 
 const ListOfRemark = observer(({ remark }: { remark: RemarkEditModel }) => {
-  const [selectedData, setSelectedData] = useState();
-  function handelEdit(remarkData) {
+  const remarks = LeadsStore.remark;
+  const [selectedData, setSelectedData] = useState<Remark>();
+  function handelEdit(remarkData: Remark) {
     ModalStore.handelOpenEditModal();
     setSelectedData(remarkData);
   }
-  if (remark.assignessName !== undefined) {
+  if (remark.assignee !== undefined) {
     return (
       <li className={RemarkLiStyle}>
         {selectedData ? <RemarkModalComponent remark={remark} /> : ""}
         <div className={RemarkListHeaderStyle}>
           <p className="font-semibold text-green-700 flex gap-2">
-            {remark.assignessName[0].name}
-            <img src={remark.assignessName[0].profilePic} />
+            {remark.assignee[0].name}
+            <img src={remark.assignee[0].profilePic} />
           </p>
           <div className=" flex space-x-2">
             <button
@@ -32,7 +34,7 @@ const ListOfRemark = observer(({ remark }: { remark: RemarkEditModel }) => {
               <FaEdit size={14} />
             </button>
             <button
-              onClick={() => RemarkStore.deleteRemark(remark.id)}
+              onClick={() => remarks?.deleteRemark(remark.id)}
               className="text-red-500 hover:text-red-700"
             >
               <FaTrashAlt size={14} />
