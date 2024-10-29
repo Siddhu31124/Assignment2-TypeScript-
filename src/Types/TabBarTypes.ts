@@ -1,1 +1,1 @@
-export type IsActiveType={isActive:boolean}
+export type IsActive={isActive:boolean}

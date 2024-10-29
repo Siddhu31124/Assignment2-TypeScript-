@@ -22,12 +22,11 @@ import {
   getLeadCallViewPath,
   getLeadHistoryViewPath,
 } from "../../Constants";
-import {IsActiveType } from "../../Types/TabBarTypes";
-import { PropLeadIdType} from "../../Types/CommonTypes";
+import {IsActive } from "../../Types/TabBarTypes";
 
-const TabBar = ( {leadId} :PropLeadIdType) => {
+const TabBar = ( {leadId} :{leadId:string}) => {
   //Use the lead Id from the props
-  const isActivePathStyle = ({ isActive }:IsActiveType) =>
+  const isActivePathStyle = ({ isActive }: IsActive) =>
     isActive ? activeStyle : detailsLiStyle;
   const tabElements = () => {
     return (

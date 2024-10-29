@@ -1,13 +1,19 @@
 import { Outlet } from "react-router";
 import { useParams } from "react-router";
+import { observer } from "mobx-react";
 
 import Header from "../Components/Header/Header";
 import SideBar from "../Components/SideBarSection/Sidebar";
 import TabBar from "../Components/TabBar/TabBar";
-import { LeadIdType } from "../Types/CommonTypes";
+import LeadsStore from "../Store/LeadStore";
+import RemarkStore from "../Store/RemarkStore";
 
-const RootPage = () => {
-  const { leadId } = useParams<LeadIdType>();
+const RootPage = observer(() => {
+  const { leadId } = useParams<string>();
+  if (leadId) {
+    LeadsStore.setAllDetails(leadId);
+    RemarkStore.setLeadRemark(leadId);
+  }
   return (
     <div className="flex flex-col">
       <Header />
@@ -20,5 +26,5 @@ const RootPage = () => {
       </div>
     </div>
   );
-};
+});
 export default RootPage;

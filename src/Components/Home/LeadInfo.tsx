@@ -10,8 +10,8 @@ import { LeadDetailsType,NameType} from "../../Types/HomeTypes";
 import { getLeadDetailedViewPath } from "../../Constants";
 const LeadInfo = ({ leadDetails }:LeadDetailsType) => {
   function extractInitials(name:NameType) {
-    let words = name.split(" ");
-    let initials = words.map((word) => word[0]).join("");
+    let words:string[] = name.split(" ");
+    let initials:string = words.map((word) => word[0]).join("");
     return initials.toUpperCase();
   }
   const leadInfoBlock = () => {

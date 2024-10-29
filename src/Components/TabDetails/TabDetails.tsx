@@ -1,19 +1,11 @@
-import { useParams } from "react-router";
+import { observer } from "mobx-react";
 
 import TabInfoBlock from "./TabInfoBlock";
-import leadInfo from "../../LeadData/LeadDetails.json";
-import { tabTypeBorderStyle, gofsListStyle } from "./TabDetailsStyles"
-import { LeadIdType } from "../../Types/CommonTypes";
-import { LeadDataType} from "../../Types/CommonTypes";
+import { tabTypeBorderStyle, gofsListStyle } from "./TabDetailsStyles";
+import LeadsStore from "../../Store/LeadStore";
 
-const TabDetails = () => {
-  const { leadId } = useParams<LeadIdType>();
-
-  const leadData : LeadDataType = leadInfo.filter((each) => leadId === each.leadId);
-  const { gofs } = leadData[0];
-  console.log(gofs)
-
-  console.log(gofs)
+const TabDetails = observer(() => {
+  const gofs = LeadsStore.selectedLeadDetails?.gofs;
 
   const tabName = () => {
     return (
@@ -25,17 +17,19 @@ const TabDetails = () => {
   };
 
   const listOfGofs = () => {
-    return (
-      <ul className={gofsListStyle}>
-        {gofs.map((gofsDetails) => (
-          <TabInfoBlock
-            key={gofsDetails.id}
-            gofName={gofsDetails.name}
-            gofDetails={gofsDetails.fields}
-          />
-        ))}
-      </ul>
-    );
+    if (gofs !== undefined) {
+      return (
+        <ul className={gofsListStyle}>
+          {gofs.map((gofsDetails) => (
+            <TabInfoBlock
+              key={gofsDetails.id}
+              gofName={gofsDetails.name}
+              gofDetails={gofsDetails.fields}
+            />
+          ))}
+        </ul>
+      );
+    }
   };
 
   return (
@@ -44,5 +38,5 @@ const TabDetails = () => {
       {listOfGofs()}
     </div>
   );
-};
+});
 export default TabDetails;

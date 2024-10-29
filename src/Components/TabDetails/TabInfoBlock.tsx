@@ -10,16 +10,18 @@ import {
   typeOfInfoStyle,
   fieldDetailsListStyle,
 } from "./TabDetailsStyles";
-import { TabInfoPropsTypes,ExpandableStateType} from "../../Types/TabDetailsTypes";
+import {
+  GofInfoPropsTypes,
+  ExpandableStateType,
+} from "../../Types/TabDetailsTypes";
 //Rename and check the props names
-const TabInfoBlock = ({ gofName, gofDetails }:TabInfoPropsTypes) => {
+const TabInfoBlock = ({ gofName, gofDetails }: GofInfoPropsTypes) => {
   //rename as isExpanded
   const [isExpanded, setIsExpanded] = useState<ExpandableStateType>(false);
 
   function handelShowMore() {
     setIsExpanded((preVal) => !preVal);
   }
-
   const tabInfoBlockClose = () => {
     if (!isExpanded) {
       return (

@@ -13,17 +13,18 @@ import {
   CALL_LOG_PATH,
   HISTORY_PATH,
 } from "../Constants";
+import Remarks from "../Components/Remark/Remark";
 
 const Router = () => {
   return createBrowserRouter([
-    { path: INITIAL_PATH , element: <Homepage /> },
+    { path: INITIAL_PATH, element: <Homepage /> },
     {
       path: LEAD_DETAILS_PATH,
       element: <RootPage />,
       children: [
         { path: LEAD_DETAILS_PATH, element: <TabDetails /> },
         { path: ACTIVITIES_PATH, element: <ComingSoonPage /> },
-        { path: REMARK_PATH, element: <ComingSoonPage /> },
+        { path: REMARK_PATH, element: <Remarks /> },
         { path: DOCS_PATH, element: <ComingSoonPage /> },
         { path: CALL_LOG_PATH, element: <ComingSoonPage /> },
         { path: HISTORY_PATH, element: <ComingSoonPage /> },

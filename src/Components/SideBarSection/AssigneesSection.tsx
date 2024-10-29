@@ -1,6 +1,6 @@
 import { GoPencil } from "react-icons/go";
+import { observer } from "mobx-react";
 
-import leadInfo from "../../LeadData/LeadDetails.json";
 import {
   contentTypeStyles,
   contentDetailsStyles,
@@ -9,11 +9,10 @@ import {
   assignUlContainer,
   betweenStyle,
 } from "./SidebarStyles";
-import { LeadDataType,LeadIdType } from "../../Types/CommonTypes";
+import LeadsStore from "../../Store/LeadStore";
+const Assignees = observer(() => {
+  const assignees = LeadsStore.selectedLeadDetails?.assignees;
 
-const Assignees = ({ leadId }:LeadIdType) => {
-  const leadData : LeadDataType = leadInfo.filter((each) => leadId === each.leadId);
-  const { assignees } = leadData[0];
   const assigneesTabHeader = () => {
     return (
       <li className={assignLiContainer}>
@@ -27,22 +26,24 @@ const Assignees = ({ leadId }:LeadIdType) => {
   };
 
   const assigneesItemsList = () => {
-    return (
-      <>
-        {assignees.map((assigneesDetails) => (
-          <li key={assigneesDetails.id} className={betweenStyle}>
-            <p className={contentTypeStyles}>PRE</p>
-            <p className={`${contentDetailsStyles}  flex`}>
-              {assigneesDetails.name}
-              <img
-                src={assigneesDetails.profilePic}
-                className="ml-2 w-8 rounded-full"
-              />
-            </p>
-          </li>
-        ))}
-      </>
-    );
+    if (assignees !== undefined) {
+      return (
+        <>
+          {assignees.map((assigneesDetails) => (
+            <li key={assigneesDetails.id} className={betweenStyle}>
+              <p className={contentTypeStyles}>PRE</p>
+              <p className={`${contentDetailsStyles}  flex`}>
+                {assigneesDetails.name}
+                <img
+                  src={assigneesDetails.profilePic}
+                  className="ml-2 w-8 rounded-full"
+                />
+              </p>
+            </li>
+          ))}
+        </>
+      );
+    }
   };
 
   return (
@@ -51,6 +52,6 @@ const Assignees = ({ leadId }:LeadIdType) => {
       {assigneesItemsList()}
     </ul>
   );
-};
+});
 
 export default Assignees;

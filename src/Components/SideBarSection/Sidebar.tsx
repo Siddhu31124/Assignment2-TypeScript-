@@ -1,5 +1,5 @@
 import { MdOutlinePushPin } from "react-icons/md";
-import { useParams } from "react-router";
+import { observer } from "mobx-react";
 
 import AssigneesSection from "./AssigneesSection";
 import OverviewSection from "./OverviewSection";
@@ -12,10 +12,8 @@ import {
   pinTextStyle,
 } from "./SidebarStyles";
 import { TYPE_OF_INPUT, CHECKBOX_ID } from "../../Constants";
-import { LeadIdType } from "../../Types/CommonTypes";
 
-const Sidebar = () => {
-  const  {leadId}= useParams<LeadIdType>();
+const Sidebar = observer(() => {
   const pinnedContainer = () => {
     return (
       <div className={containerStyles}>
@@ -48,10 +46,10 @@ const Sidebar = () => {
     <aside className={sidebarMainStyle}>
       {pinnedContainer()}
       {createdOnContainer()}
-      <AssigneesSection leadId={leadId}/>
-      <OverviewSection leadId={leadId} />
+      <AssigneesSection />
+      <OverviewSection />
     </aside>
   );
-};
+});
 
 export default Sidebar;

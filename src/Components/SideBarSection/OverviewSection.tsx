@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-
+import { observer } from "mobx-react";
 import Field from "../Fields/Fields";
-import leadInfo from "../../LeadData/LeadDetails.json";
-import { LeadIdType } from "../../Types/CommonTypes";
+import LeadsStore from "../../Store/LeadStore";
 import {
   contentTypeStyles,
   assignOverviewContainer,
@@ -12,59 +11,58 @@ import {
   arrowStyles,
   betweenStyle,
 } from "./SidebarStyles";
-import { LeadDataType } from "../../Types/CommonTypes";
 
-
-const Overview = ({ leadId }:LeadIdType) => {
+const Overview = observer(() => {
   const [isShowMore, setIsShowMore] = useState(true);
 
-  const leadData :LeadDataType = leadInfo.filter((each) => leadId === each.leadId);
-  const { overviewFields } = leadData[0];
-  const topThreeData = overviewFields.slice(0, 2);
+  const overviewFields = LeadsStore.selectedLeadDetails?.overviewFields;
+  const topThreeData = overviewFields ? overviewFields.slice(0, 2) : undefined;
 
   function handelShowMore() {
     setIsShowMore((preVal) => !preVal);
   }
 
   const overviewSection = () => {
-    if (isShowMore) {
-      return (
-        <>
-          {topThreeData.map((overviewDetails) => (
-            <li key={overviewDetails.fieldId} className={betweenStyle}>
-              <p className={contentTypeStyles}>{overviewDetails.name}</p>
-              <Field
-                type={overviewDetails.fieldType}
-                value={overviewDetails.value}
-                textAlignment={"text-right"}
-              />
+    switch (true) {
+      case isShowMore && topThreeData !== undefined:
+        return (
+          <>
+            {topThreeData.map((overviewDetails) => (
+              <li key={overviewDetails.fieldId} className={betweenStyle}>
+                <p className={contentTypeStyles}>{overviewDetails.name}</p>
+                <Field
+                  type={overviewDetails.fieldType}
+                  value={overviewDetails.value}
+                  textAlignment={"text-right"}
+                />
+              </li>
+            ))}
+            <li onClick={handelShowMore} className={showMoreStyles}>
+              See more
+              <IoIosArrowDown className={arrowStyles} />
             </li>
-          ))}
-          <li onClick={handelShowMore} className={showMoreStyles}>
-            See more
-            <IoIosArrowDown className={arrowStyles} />
-          </li>
-        </>
-      );
+          </>
+        );
+      case !isShowMore && overviewFields !== undefined:
+        return (
+          <>
+            {overviewFields.map((overviewDetails) => (
+              <li key={overviewDetails.fieldId} className={betweenStyle}>
+                <p className={contentTypeStyles}>{overviewDetails.name}</p>
+                <Field
+                  type={overviewDetails.fieldType}
+                  value={overviewDetails.value}
+                  textAlignment={"text-right"}
+                />
+              </li>
+            ))}
+            <li onClick={handelShowMore} className={showMoreStyles}>
+              See less
+              <IoIosArrowUp className={arrowStyles} />
+            </li>
+          </>
+        );
     }
-    return (
-      <>
-        {overviewFields.map((overviewDetails) => (
-          <li key={overviewDetails.fieldId} className={betweenStyle}>
-            <p className={contentTypeStyles}>{overviewDetails.name}</p>
-            <Field
-              type={overviewDetails.fieldType}
-              value={overviewDetails.value}
-              textAlignment={"text-right"}
-            />
-          </li>
-        ))}
-        <li onClick={handelShowMore} className={showMoreStyles}>
-          See less
-          <IoIosArrowUp className={arrowStyles} />
-        </li>
-      </>
-    );
   };
 
   return (
@@ -75,6 +73,6 @@ const Overview = ({ leadId }:LeadIdType) => {
       {overviewSection()}
     </ul>
   );
-};
+});
 
 export default Overview;

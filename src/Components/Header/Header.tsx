@@ -3,11 +3,11 @@ import { FaChevronDown } from "react-icons/fa6";
 import { LuRefreshCcw } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
 import { RiLink } from "react-icons/ri";
-import { useParams } from "react-router";
 import { MdArrowBackIos } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
-import leadInfo from "../../LeadData/LeadDetails.json";
+import LeadsStore from "../../Store/LeadStore";
 import ActionButtons from "./ActionButtons";
 import {
   profileCircleStyle,
@@ -20,17 +20,15 @@ import {
   profileContainer,
 } from "./HeadersStyles";
 import { INITIAL_PATH } from "../../Constants";
-import { LeadIdType,StringType } from "../../Types/CommonTypes";
-import { LeadDataType } from "../../Types/CommonTypes";
 
-const Header = () => {
-  const { leadId } = useParams<LeadIdType>();
-  const leadData :LeadDataType = leadInfo.filter((each) => leadId === each.leadId);
-  const { name, stage } = leadData[0];
+const Header = observer(() => {
+  const name = LeadsStore.selectedLeadDetails?.name;
+  const stage = LeadsStore.selectedLeadDetails?.stage;
 
-  function extractInitials(name:StringType) {
-    let words = name.split(" ");
-    let initials = words.map((word) => word[0]).join("");
+  //Add the types for the below variables
+  function extractInitials(name: string) {
+    let words: string[] = name.split(" ");
+    let initials: string = words.map((word) => word[0]).join("");
     return initials.toUpperCase();
   }
 
@@ -51,33 +49,35 @@ const Header = () => {
   };
 
   const leadDetails = () => {
-    return (
-      <div className={leadContainerStyle}>
-        <div className={profileContainer}>
-          <div
-            className={`${profileCircleStyle}`}
-            style={{
-              backgroundColor: stage.color,
-              fontSize: "24px",
-            }}
-          >
-            <p>{extractInitials(name)}</p>
+    if (stage !== undefined && name !== undefined) {
+      return (
+        <div className={leadContainerStyle}>
+          <div className={profileContainer}>
+            <div
+              className={`${profileCircleStyle}`}
+              style={{
+                backgroundColor: stage.color,
+                fontSize: "24px",
+              }}
+            >
+              <p>{extractInitials(name)}</p>
+            </div>
+            <p className="text-[24px]">{name}</p>
+            <p className={leadTypeStyle}>
+              {stage.name}
+              <FaChevronDown className={downArrow} />
+            </p>
           </div>
-          <p className="text-[24px]">{name}</p>
-          <p className={leadTypeStyle}>
-            {stage.name}
-            <FaChevronDown className={downArrow} />
-          </p>
+          <div className="flex flex-col gap-4">
+            <p className={copyStyle}>
+              <RiLink className="mr-2 text-[16px] inline" />
+              Copy
+            </p>
+            <ActionButtons />
+          </div>
         </div>
-        <div className="flex flex-col gap-4">
-          <p className={copyStyle}>
-            <RiLink className="mr-2 text-[16px] inline" />
-            Copy
-          </p>
-          <ActionButtons />
-        </div>
-      </div>
-    );
+      );
+    }
   };
 
   return (
@@ -86,6 +86,6 @@ const Header = () => {
       {leadDetails()}
     </div>
   );
-};
+});
 
 export default Header;

@@ -19,15 +19,20 @@ import {
   PHONE,
   SMALL_TEXT,
   IDENTIFY_URL,
-  LIMIT_OF_SECTION,
 } from "../../Constants";
-import { FieldTypes } from "../../Types/FieldType";
-
+import multiSelectFormat  from '../../utils/MuliSelectFormat'
 //Remove sidebar as prop
 //TODO: Update Field spelling
 //rename the component as Field
 //Remove li or rename the component as list item context
 //It is not list, rename as Field
+
+//Write the props in the file itself if we are not using it anywhere else
+interface  FieldTypes {
+  type: string;
+  value: any;
+  textAlignment: string;
+}
 const Field = ({ type, value, textAlignment}:FieldTypes) => {
   const customStyles :string = `${commonFelidStyle} ${textAlignment}`;
   const customMultiStyles :string = `${multiLineStyle} ${textAlignment}`;
@@ -72,23 +77,9 @@ const Field = ({ type, value, textAlignment}:FieldTypes) => {
 
     //Handle the no data cases
     //No magic numbers
-    case MULTI_SELECT: {
-      if (value.length > LIMIT_OF_SECTION) {
-        const firstValue = value[0];
-        const secondValue = value[1];
-        return (
-          <li className={customStyles}>
-            {firstValue} {secondValue}
-            {value.length - LIMIT_OF_SECTION > 0
-              ? `+${value.length - LIMIT_OF_SECTION}`
-              : ""}
-          </li>
-        );
-      } else if (value.length === 0) {
-        return <li className={customStyles}>No Data</li>;
-      } else {
-        return value.join(" ");
-      }
+    //More this to a separate function
+    case MULTI_SELECT : {
+      return <li className={customStyles}>{multiSelectFormat(value)}</li>
     }
 
     //Handle the null case
