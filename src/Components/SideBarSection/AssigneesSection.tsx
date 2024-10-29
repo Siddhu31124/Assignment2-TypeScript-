@@ -11,7 +11,7 @@ import {
 } from "./SidebarStyles";
 import LeadsStore from "../../Store/LeadStore";
 const Assignees = observer(() => {
-  const assignees = LeadsStore.selectedLeadDetails?.assignees;
+  const assignees = LeadsStore.activeLeadDetails?.assignees;
 
   const assigneesTabHeader = () => {
     return (

@@ -3,25 +3,25 @@ import { Remark } from "../Types/CommonTypes";
 import RemarkModel from "../Model/RemarkModel";
 
 class RemarkStore {
-  leadRemark: RemarkModel[];
+  leadRemarks: RemarkModel[];
   constructor(leadRemarkData: RemarkModel[]) {
-    this.leadRemark = leadRemarkData;
+    this.leadRemarks = leadRemarkData;
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   setRemarks(remark: Remark) {
     const remarkData = new RemarkModel(remark);
-    this.leadRemark.push(remarkData);
+    this.leadRemarks.push(remarkData);
   }
 
   deleteRemark(id: string) {
-    this.leadRemark = this.leadRemark.filter(
+    this.leadRemarks = this.leadRemarks.filter(
       (eachRemark) => eachRemark.id !== id
     );
   }
 
   editRemark(editRemark: Remark) {
-    let editData = this.leadRemark.find(
+    let editData = this.leadRemarks.find(
       (eachRemark) => (eachRemark.id = editRemark.id)
     );
     if (editData !== undefined) {

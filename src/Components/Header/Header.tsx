@@ -22,8 +22,8 @@ import {
 import { INITIAL_PATH } from "../../Constants";
 
 const Header = observer(() => {
-  const name = LeadsStore.selectedLeadDetails?.name;
-  const stage = LeadsStore.selectedLeadDetails?.stage;
+  const name = LeadsStore.activeLeadDetails?.name;
+  const stage = LeadsStore.activeLeadDetails?.stage;
 
   //Add the types for the below variables
   function extractInitials(name: string) {

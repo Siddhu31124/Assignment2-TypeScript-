@@ -10,7 +10,7 @@ import LeadsStore from "../Store/LeadStore";
 const RootPage = observer(() => {
   const { leadId } = useParams<string>();
   if (leadId) {
-    LeadsStore.setAllDetails(leadId);
+    LeadsStore.setLeadId(leadId);
   }
   return (
     <div className="flex flex-col">

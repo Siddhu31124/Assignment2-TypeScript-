@@ -6,14 +6,14 @@ import { RemarkLiStyle } from "./RemarkStyle";
 import RemarkModalComponent from "../Modal/EditRemarkModal";
 import ModalStore from "../../Store/ModalStore";
 import { RemarkListHeaderStyle } from "./RemarkStyle";
-import RemarkEditModel from "../../Model/RemarkModel";
 import LeadsStore from "../../Store/LeadStore";
-import { Remark } from "../../Types/CommonTypes";
+import RemarkModel from "../../Model/RemarkModel";
 
-const ListOfRemark = observer(({ remark }: { remark: RemarkEditModel }) => {
-  const remarks = LeadsStore.remark;
-  const [selectedData, setSelectedData] = useState<Remark>();
-  function handelEdit(remarkData: Remark) {
+const ListOfRemark = observer(({ remark }: { remark: RemarkModel }) => {
+  console.log(remark);
+  const remarks = LeadsStore.activeLeadDetails?.remark;
+  const [selectedData, setSelectedData] = useState<RemarkModel>();
+  function handelEdit(remarkData: RemarkModel) {
     ModalStore.handelOpenEditModal();
     setSelectedData(remarkData);
   }
@@ -23,8 +23,8 @@ const ListOfRemark = observer(({ remark }: { remark: RemarkEditModel }) => {
         {selectedData ? <RemarkModalComponent remark={remark} /> : ""}
         <div className={RemarkListHeaderStyle}>
           <p className="font-semibold text-green-700 flex gap-2">
-            {remark.assignee[0].name}
-            <img src={remark.assignee[0].profilePic} />
+            {remark.assignee.name}
+            <img src={remark.assignee.profilePic} />
           </p>
           <div className=" flex space-x-2">
             <button

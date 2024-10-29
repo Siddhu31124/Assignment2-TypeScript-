@@ -6,9 +6,9 @@ import { NoRemarkStyle } from "./RemarkStyle";
 import LeadsStore from "../../Store/LeadStore";
 
 const Remarks = observer(() => {
-  const remark = LeadsStore.remark;
+  const remark = LeadsStore.activeLeadDetails?.remark;
   if (remark) {
-    if (remark?.leadRemark.length < 1) {
+    if (remark?.leadRemarks.length < 1) {
       return (
         <div className={NoRemarkStyle}>
           <h1 className="text-[32px] mt-1">No Remarks</h1>
@@ -17,7 +17,7 @@ const Remarks = observer(() => {
     }
     return (
       <ul className={RemarkUlStyle}>
-        {remark.leadRemark.map((eachRemark) => {
+        {remark.leadRemarks.map((eachRemark) => {
           if (eachRemark.assignee !== undefined) {
             return <ListOfRemark remark={eachRemark} />;
           }

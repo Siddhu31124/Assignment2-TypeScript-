@@ -18,7 +18,7 @@ const ModalContent = observer(() => {
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { leadId } = useParams();
-  const remarkMethod = LeadsStore.remark;
+  const remarkMethod = LeadsStore.activeLeadDetails?.remark;
 
   function addReview() {
     const validTextArea =
@@ -31,7 +31,7 @@ const ModalContent = observer(() => {
         id: v4(),
         content: remake,
         created: dayjs(new Date()).format(DATE_TIME_FORMAT),
-        assignee: LeadsStore.selectedLeadDetails?.assignees,
+        assignee: LeadsStore.activeLeadDetails?.assignees[0],
       };
       setIsTextareaEmpty(false);
       remarkMethod?.setRemarks(remarkData);

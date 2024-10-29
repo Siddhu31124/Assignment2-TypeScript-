@@ -8,12 +8,12 @@ import Modal from "react-modal";
 import ModalStore from "../../Store/ModalStore";
 import { customStyles } from "./ModalStyle";
 import LeadsStore from "../../Store/LeadStore";
-import { Remark } from "../../Types/CommonTypes";
+import RemarkModel from "../../Model/RemarkModel";
 
-const RemarkModal = observer(({ remark }: { remark: Remark }) => {
+const RemarkModal = observer(({ remark }: { remark: RemarkModel }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { leadId } = useParams();
-  const remarkMethods = LeadsStore.remark;
+  const remarkMethods = LeadsStore.activeLeadDetails?.remark;
 
   function editReview() {
     const validTextArea =
@@ -26,7 +26,7 @@ const RemarkModal = observer(({ remark }: { remark: Remark }) => {
         id: remark.id,
         content: remake,
         created: dayjs(new Date()).format("MM/DD/YY:hh:mm a"),
-        assignee: LeadsStore.selectedLeadDetails?.assignees,
+        assignee: LeadsStore.activeLeadDetails?.assignees[0],
       };
       remarkMethods?.editRemark(remarkData);
       ModalStore.handelCloseEditModal();
@@ -64,7 +64,7 @@ const RemarkModal = observer(({ remark }: { remark: Remark }) => {
   );
 });
 
-const RemarkModalComponent = ({ remark }: { remark: Remark }) =>
+const RemarkModalComponent = ({ remark }: { remark: RemarkModel }) =>
   createPortal(
     <RemarkModal remark={remark} />,
     document.getElementById("modal")!

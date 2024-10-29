@@ -4,7 +4,7 @@ import AssigneesModel from "./Assignees";
 
 class RemarkModel {
   id: string;
-  assignee: AssigneesModel[];
+  assignee: AssigneesModel | undefined;
   content: string;
   created: string;
   constructor(text: Remark) {

@@ -1,8 +1,5 @@
 import AssigneesModel from "../Model/Assignees";
-import {
-  FieldsTypes,
-  GofDetailObjType as OverFieldType,
-} from "./TabDetailsTypes";
+import { FieldsTypes } from "./TabDetailsTypes";
 
 //lead id undefined type is not valid
 //use interface over type
@@ -48,7 +45,7 @@ export interface LeadDataType {
 
 export interface Remark {
   id: string;
-  assignee: AssigneesModel[];
+  assignee: AssigneesModel | undefined;
   content: string;
   created: string;
 }

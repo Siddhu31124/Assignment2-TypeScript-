@@ -5,7 +5,7 @@ import { tabTypeBorderStyle, gofsListStyle } from "./TabDetailsStyles";
 import LeadsStore from "../../Store/LeadStore";
 
 const TabDetails = observer(() => {
-  const gofs = LeadsStore.selectedLeadDetails?.gofs;
+  const gofs = LeadsStore.activeLeadDetails?.gofs;
 
   const tabName = () => {
     return (
